@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  height: 100%;
+  font-size: var(--size-text-sm);
+  font-family: notosans regular;
+}
+body {
+  height: 100%;
+}
+ul,
+li {
+  list-style: none;
+}
+img {
+  width: 100%;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+}

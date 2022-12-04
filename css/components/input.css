@@ -1,0 +1,86 @@
+.input__label {
+  margin-bottom: var(--margin-8);
+  color: var(--color-text-grey);
+  font-size: var(--size-text-sm);
+  font-family: notosans semibold;
+}
+.input__controller {
+  position: relative;
+}
+.input__controller input,
+.input__controller select {
+  outline: none;
+  height: var(--input-height);
+  border: 1px solid var(--color-border);
+  background-color: #fff;
+  padding: 0px 12px;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-black);
+  font-size: var(--size-text-sm);
+  font-family: notosans semibold;
+  border-radius: var(--border-radius);
+}
+.input__controller input.italic::placeholder {
+  font-style: italic;
+}
+.input__controller input::placeholder {
+  color: var(--color-text-grey-second);
+}
+.input__controller input:focus,
+.input__controller select:focus {
+  border-color: var(--color-bg-black);
+}
+.input__controller input.input-primary:focus,
+.input__controller select.input-primary:focus {
+  border-color: var(--color-bg-green);
+}
+/*start icon */
+.input__controller.input__iconend input,
+.input__controller.input__iconend select {
+  padding-right: calc(var(--input-height) + var(--padding-12));
+}
+.input__controller.input__iconend .input__icon--end {
+  font-size: var(--size-text-md);
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: var(--color-text-grey-second);
+  height: var(--input-height);
+  width: var(--input-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  cursor: pointer;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+}
+.input__controller.input__iconend .input__icon--end:hover {
+  background-color: var(--color-border);
+}
+/* end icon */
+
+/* start err */
+.input__controller.err input {
+  border-color: var(--color-border-red);
+}
+.input__controller.err .input__icon--end:hover {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+.input__controller .input__error_messenger {
+  display: none;
+}
+.input__controller.err .input__error_messenger {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  color: var(--color-border-red);
+  font-size: var(--size-text-sm);
+  line-height: var(--size-text-sm);
+  font-family: notosans semibold;
+  left: 0;
+  top: calc(100% + var(--padding-8));
+}
+/* end err */

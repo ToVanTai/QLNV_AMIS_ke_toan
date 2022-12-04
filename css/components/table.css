@@ -1,0 +1,45 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tr {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table td {
+  padding: var(--padding-8) var(--padding-12);
+}
+.table th:not(:last-child),
+.table td:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+.table th {
+  text-align: left;
+  text-transform: uppercase;
+  background-color: var(--color-bg-grey-four);
+  padding: var(--padding-10) var(--padding-12);
+}
+
+.table th.checkbox,
+.table td.checkbox,
+.table th.date,
+.table td.date,
+.table th.more,
+.table td.more {
+  text-align: center;
+}
+.table th.money,
+.table td.money {
+  text-align: right;
+}
+
+.table tbody tr {
+  cursor: pointer;
+  line-height: var(--size-text-sm);
+  color: var(--color-text-grey);
+}
+.table tbody tr:hover {
+  background-color: var(--color-text-white-second);
+}

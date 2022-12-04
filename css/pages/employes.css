@@ -1,0 +1,99 @@
+@import url(./../layout/header.css);
+@import url(./../layout/sidebar.css);
+@import url(./../layout/main.css);
+@import url(./../layout/title.css);
+
+.employespage {
+  background-color: var(--color-bg-white);
+  padding: var(--padding-18);
+  margin: 0px var(--margin-18) var(--margin-18) var(--margin-18);
+}
+
+/* start css employes controller */
+.employespage__controller {
+  padding-bottom: var(--padding-18);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.employespage__controller__iconreload {
+  height: var(--input-height);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-left: var(--margin-18);
+  cursor: pointer;
+}
+.employespage__controller__iconreload i {
+  color: var(--color-text-grey-second);
+  font-size: var(--size-text-lg);
+}
+/* end css employes controller */
+
+/* start css employes table */
+.employespage__table {
+}
+.employespage__table .employespage__table__action__dropdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-blue);
+  font-size: var(--size-text-md);
+  cursor: pointer;
+}
+.employespage__table .employespage__table__action__dropdown--toggle {
+  padding: var(--padding-8) var(--padding-10);
+  margin-left: var(--margin-8);
+  border: 1px solid transparent;
+}
+.employespage__table .employespage__table__action__dropdown--list {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-white);
+  display: none;
+  z-index: 1;
+}
+.employespage__table .employespage__table__action__dropdown--item {
+  padding: 12px;
+  text-align: left;
+  font-size: var(--size-text-sm);
+  color: var(--color-text-grey);
+  white-space: nowrap;
+}
+.employespage__table
+  .employespage__table__action__dropdown:hover
+  .employespage__table__action__dropdown--toggle {
+  border-color: var(--color-text-blue);
+}
+.employespage__table
+  .employespage__table__action__dropdown:hover
+  .employespage__table__action__dropdown--list {
+  display: block;
+}
+.employespage__table .employespage__table__action__dropdown--item:hover {
+  background-color: var(--color-bg-grey-four);
+  color: var(--color-bg-green);
+}
+/* end css employes table */
+
+/* start css employes table */
+.employespage__pagination {
+  padding-top: var(--padding-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.employespage__pagination__left,
+.employespage__pagination__right {
+  flex-shrink: 0;
+}
+.employespage__pagination__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* end css employes table */

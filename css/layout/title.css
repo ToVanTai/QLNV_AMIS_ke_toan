@@ -1,0 +1,13 @@
+/* start css title */
+.title {
+  padding: var(--padding-28) var(--padding-24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title__text {
+  font-family: notosans bold;
+  color: var(--color-text-black);
+  font-size: var(--size-text-lg);
+}
+/* end css title */

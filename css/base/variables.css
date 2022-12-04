@@ -1,0 +1,84 @@
+:root {
+  /* start defind color for text */
+  --color-text-white: #fff;
+  --color-text-white-second: #fafafa;
+  --color-text-black: #000;
+  --color-text-grey: #1f1f1f;
+  --color-text-grey-second: #424242;
+  --color-text-blue: #007aff;
+  /* end defind for text */
+
+  /* start defind color for bg */
+  --color-bg-black: #000;
+  --color-bg-grey: #1f1f1f;
+  --color-bg-grey-second: #616161;
+  --color-bg-grey-third: #757575;
+  --color-bg-grey-four: #f5f5f5;
+  --color-bg-green: #50b83c;
+  --color-bg-green-hover: #5dc748;
+  --color-bg-green-disable: #9ad38e;
+  --color-bg-green-press: #118044;
+  --color-bg-white: #fff;
+  /* end defind for bg */
+
+  /* start defind color for border */
+  --color-border: #e0e0e0;
+  --color-border-green: #50b83c;
+  --color-border-red: #eb3333;
+  /* end defind color for border */
+
+  /* start defind size for border */
+  --border-radius: 4px;
+  /* end defind size for border */
+
+  /* start defind font size */
+  --size-text-xs: 11px;
+  --size-text-sm: 13px;
+  --size-text-md: 15px;
+  --size-text-lg: 20px;
+  --size-text-xl: 24px;
+  /* end defind font size */
+
+  /* start defind width, height */
+  --sidebar-width: 180px;
+  --header-height: 40px;
+  --input-height: 32px;
+  --button-height: 36px;
+  /* end defind width, height */
+
+  /* start defind transition */
+  --time-transition: 0.3s;
+  /* end defind transition time */
+
+  /* start defind boxshadow */
+  --color-shadow: 0px 2px 2px rgba(0, 0, 0, 16%);
+  /* end defind boxshadow */
+
+  /* start defind padding */
+  --padding-4: 4px;
+  --padding-8: 8px;
+  --padding-10: 10px;
+  --padding-12: 12px;
+  --padding-14: 14px;
+  --padding-16: 16px;
+  --padding-18: 18px;
+  --padding-20: 20px;
+  --padding-24: 24px;
+  --padding-26: 26px;
+  --padding-28: 28px;
+  /* end defind padding */
+
+  /* start defind margin */
+  --margin-4: 4px;
+  --margin-8: 8px;
+  --margin-12: 12px;
+  --margin-14: 14px;
+  --margin-16: 16px;
+  --margin-18: 18px;
+  --margin-20: 20px;
+  --margin-24: 24px;
+  --margin-26: 26px;
+  --margin-28: 28px;
+
+  /* end defind margin */
+}
