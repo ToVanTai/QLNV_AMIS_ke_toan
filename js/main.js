@@ -48,8 +48,26 @@ generateEmployes()
 // start pagination
 // end pagination
 
-function employesPagination () {
+function employesPagination (total, current) {
   let paginationElm = document.querySelector(".employespage__pagination__right--pagination .pagination")
-  console.log(paginationElm);
+  let liTagHtml = ``
+  if (total >= 1 && total <= 5) {
+    if (current > 1) {
+      liTagHtml += `<li data-index=${current - 1} onclick="employesPagination(${total}, ${current - 1})" class="prev">Trước</li>`
+    }
+    for (let i = 1; i <= total; i++) {
+      if (i == current) {
+        liTagHtml += `<li class="num active" data-index=${i} onclick="employesPagination(${total}, ${i})">${i}</li>`
+      } else {
+        liTagHtml += `<li data-index=${i} onclick="employesPagination(${total}, ${i})" class="num">${i}</li>`
+      }
+    }
+    if (current < total) {
+      liTagHtml += `<li data-index=${current + 1} onclick="employesPagination(${total}, ${current + 1})" class="next">Sau</li>`
+    }
+  } else if (total > 5) { }
+  paginationElm.innerHTML = liTagHtml
 }
-employesPagination()
+let total = 5
+let current = 1
+employesPagination(5, 1)

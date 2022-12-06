@@ -3,7 +3,13 @@
   display: block;
   clear: both;
 }
+.row.p-12 {
+  margin: 0px -12px;
+}
 
+.row.p-12 > .col {
+  padding: 0px 12px;
+}
 .col {
   float: left;
 }

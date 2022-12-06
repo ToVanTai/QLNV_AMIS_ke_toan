@@ -1,0 +1,15 @@
+.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgb(0, 0, 0, 40%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
+  transform: translateY(-100%);
+  transition: transform var(--time-transition) ease;
+}
+.popup.show {
+  transform: translateY(0);
+}

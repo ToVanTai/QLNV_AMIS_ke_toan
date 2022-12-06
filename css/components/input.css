@@ -1,24 +1,47 @@
+/*start css for lable, input:text, select */
 .input__label {
+  display: block;
   margin-bottom: var(--margin-8);
   color: var(--color-text-grey);
   font-size: var(--size-text-sm);
   font-family: notosans semibold;
 }
+.input__label.required {
+  position: relative;
+  width: fit-content;
+}
+.input__label.required::after {
+  content: '*';
+  position: absolute;
+  color: var(--color-border-red);
+  font-family: notosans semibold;
+  transform: translateX(4px);
+}
 .input__controller {
   position: relative;
 }
-.input__controller input,
+.input__controller input[type='text'],
+.input__controller input[type='email'],
+.input__controller input[type='file'],
+.input__controller input[type='date'],
+.input__controller input[type='datetime'],
+.input__controller input[type='number'],
+.input__controller input[type='password'],
+.input__controller input[type='tel'],
+.input__controller input[type='submit'],
+.input__controller input[type='time'],
 .input__controller select {
   outline: none;
   height: var(--input-height);
+  width: 100%;
   border: 1px solid var(--color-border);
   background-color: #fff;
   padding: 0px 12px;
   display: flex;
   align-items: center;
-  color: var(--color-text-black);
+  color: var(--color-text-grey-second);
   font-size: var(--size-text-sm);
-  font-family: notosans semibold;
+  font-family: notosans regular;
   border-radius: var(--border-radius);
 }
 .input__controller input.italic::placeholder {
@@ -31,8 +54,8 @@
 .input__controller select:focus {
   border-color: var(--color-bg-black);
 }
-.input__controller input.input-primary:focus,
-.input__controller select.input-primary:focus {
+.input__controller input.input__primary:focus,
+.input__controller select.input__primary:focus {
   border-color: var(--color-bg-green);
 }
 /*start icon */
@@ -84,3 +107,15 @@
   top: calc(100% + var(--padding-8));
 }
 /* end err */
+/* end css for lable, input:text, select */
+
+/* start css for radio */
+.input__controller.group {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-8);
+}
+.input__controller.group input:not(:first-child) {
+  margin-left: var(--margin-8);
+}
+/* end css for radio */

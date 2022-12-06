@@ -22,7 +22,7 @@
   /* end defind for bg */
 
   /* start defind color for border */
-  --color-border: #e0e0e0;
+  --color-border: #bebebe;
   --color-border-green: #50b83c;
   --color-border-red: #eb3333;
   /* end defind color for border */
@@ -71,6 +71,7 @@
   /* start defind margin */
   --margin-4: 4px;
   --margin-8: 8px;
+  --margin-10: 10px;
   --margin-12: 12px;
   --margin-14: 14px;
   --margin-16: 16px;
@@ -81,4 +82,8 @@
   --margin-28: 28px;
 
   /* end defind margin */
+
+  /* start defind opacity */
+  --opacity-16: 16%;
+  /* end defind opacity */
 }

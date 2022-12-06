@@ -166,7 +166,8 @@
           <div class="employespage__controller">
             <div class="input__controller input__iconend">
               <input
-                class="italic input-primary"
+                class="italic input__primary"
+                type="text"
                 placeholder="Tìm theo mã, tên nhân viên" />
               <div class="input__icon--end"><i class="fas fa-search"></i></div>
               <!-- <div class="input__error_messenger">da co loi</div> -->
@@ -242,7 +243,7 @@
             <div class="employespage__pagination__right">
               <div class="employespage__pagination__right--selectquantity">
                 <div class="input__controller input__iconend">
-                  <select class="input-primary">
+                  <select class="input__primary">
                     <option>20 bản ghi trên 1 trang</option>
                     <option>10 bản ghi trên 1 trang</option>
                   </select>
@@ -264,6 +265,249 @@
               </div>
             </div>
           </div>
+          <!-- start employespage_employeeform -->
+          <div class="popup" id="employespage__employeeform">
+            <form>
+              <!-- start btn close -->
+              <div class="employespage__employeeform--close">
+                <i class="fas fa-times"></i>
+              </div>
+              <!-- end btn close -->
+
+              <!-- start heading -->
+              <div class="employespage__employeeform__heading">
+                <div class="employespage__employeeform__heading--title">
+                  Thông tin nhân viên
+                  <!-- or "Thêm mới nhân viên" -->
+                </div>
+                <div class="input__controller group" style="padding-left: 12px">
+                  <input
+                    type="checkbox"
+                    name="iscustomer"
+                    id="checkbox__iscustomer"
+                    value="true" />
+                  <label for="checkbox__iscustomer">Là khách hàng</label>
+                  <input
+                    type="checkbox"
+                    name="issupplier"
+                    id="checkbox__issupplier"
+                    value="false" />
+                  <label for="checkbox__issupplier">Là nhà cung cấp</label>
+                </div>
+              </div>
+              <!-- end heading -->
+              <!-- start body -->
+              <div class="employespage__employeeform__body">
+                <div class="row p-12">
+                  <div class="col col-6">
+                    <div class="row">
+                      <!-- id employee -->
+                      <div class="col col-4">
+                        <label class="input__label required">Mã</label>
+                        <div class="input__controller">
+                          <input type="text" class="input__primary" required />
+                        </div>
+                      </div>
+                      <!-- name employee -->
+                      <div class="col col-8" style="padding-left: 8px">
+                        <label class="input__label required">Tên</label>
+                        <div class="input__controller">
+                          <input type="text" class="input__primary" required />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col col-6">
+                    <div class="row">
+                      <!-- id birthday -->
+                      <div class="col col-4">
+                        <label class="input__label">Ngày sinh</label>
+                        <div class="input__controller">
+                          <input type="date" class="input__primary" />
+                        </div>
+                      </div>
+                      <!-- gender -->
+                      <div class="col col-8" style="padding-left: 8px">
+                        <div class="input__label">Giới tính</div>
+                        <div
+                          class="input__controller group"
+                          style="height: 32px">
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="1"
+                            id="gender__male" />
+                          <label for="gender__male">Nam</label>
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="0"
+                            id="gender__female" />
+                          <label for="gender__female">Nữ</label>
+                          <input
+                            type="radio"
+                            name="gender"
+                            value="-1"
+                            id="gender__other" />
+                          <label for="gender__other">Khác</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-12">
+                  <!-- don vi -->
+                  <div class="col col-6">
+                    <div class="input__label required">Đơn vị</div>
+                    <div class="input__controller">
+                      <select class="input__primary">
+                        <option>Phòng nhân sự</option>
+                        <option>Phòng hành chính</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col col-6">
+                    <div class="row">
+                      <!-- indentity card -->
+                      <div class="col col-8" style="padding-right: 8px">
+                        <div class="input__label">
+                          Số
+                          <div class="tooltip">
+                            CMND
+                            <div class="tooltip__messenger">
+                              Số chứng minh nhân dân
+                            </div>
+                          </div>
+                        </div>
+                        <div class="input__controller">
+                          <input
+                            type="text"
+                            class="input__primary"
+                            name=""
+                            id="" />
+                        </div>
+                      </div>
+                      <!-- ngay cap -->
+                      <div class="col col-4">
+                        <div class="input__label">Ngày cấp</div>
+                        <div class="input__controller">
+                          <input
+                            type="date"
+                            name=""
+                            class="input__primary"
+                            id="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row p-12">
+                  <!-- chuc danh -->
+                  <div class="col col-6">
+                    <div class="input__label">Chức danh</div>
+                    <div class="input__controller">
+                      <input type="text" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                  <!-- noi cap -->
+                  <div class="col col-6">
+                    <div class="input__label">Nơi cấp</div>
+                    <div class="input__controller">
+                      <input type="text" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                </div>
+                <div></div>
+                <!-- address -->
+                <div class="row">
+                  <div class="input__label">Địa chỉ</div>
+                  <div class="input__controller">
+                    <input type="text" name="" class="input__primary" id="" />
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- phone -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">
+                      <div class="tooltip">
+                        ĐT
+                        <div class="tooltip__messenger">
+                          Số điện thoại di động
+                        </div>
+                      </div>
+                      di đông
+                    </div>
+                    <div class="input__controller">
+                      <input type="tel" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                  <!-- điện thoại cố định -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">
+                      <div class="tooltip">
+                        ĐT
+                        <div class="tooltip__messenger">
+                          Số điện thoại di động
+                        </div>
+                      </div>
+                      cố định
+                    </div>
+                    <div class="input__controller">
+                      <input type="tel" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                  <!-- email -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">Email</div>
+                    <div class="input__controller">
+                      <input
+                        type="email"
+                        name=""
+                        class="input__primary"
+                        id="" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- account bank -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">Tài khoản ngân hàng</div>
+                    <div class="input__controller">
+                      <input type="text" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                  <!-- bank name -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">Tên ngân hàng</div>
+                    <div class="input__controller">
+                      <input type="text" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                  <!-- branch -->
+                  <div class="col col-3" style="padding-right: 8px">
+                    <div class="input__label">Chi nhánh</div>
+                    <div class="input__controller">
+                      <input type="text" name="" class="input__primary" id="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end body -->
+              <!-- start footer -->
+              <div class="employespage__employeeform__footer">
+                <div class="employespage__employeeform__footer__left">
+                  <button class="btn">Hủy</button>
+                </div>
+                <div class="employespage__employeeform__footer__right">
+                  <button class="btn">Cất</button>
+                  <button class="btn btn-primary">Cất và Thêm</button>
+                </div>
+              </div>
+              <!-- end footer -->
+            </form>
+          </div>
+          <!-- end employespage_employeeform -->
         </div>
         <!-- end employes page  -->
       </div>

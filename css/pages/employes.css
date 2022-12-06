@@ -6,7 +6,7 @@
 .employespage {
   background-color: var(--color-bg-white);
   padding: var(--padding-18);
-  margin: 0px var(--margin-18) var(--margin-18) var(--margin-18);
+  margin: 0px var(--margin-18) var(--margin-18) 0px;
 }
 
 /* start css employes controller */
@@ -18,11 +18,16 @@
 }
 .employespage__controller__iconreload {
   height: var(--input-height);
+  width: var(--input-height);
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  margin-left: var(--margin-18);
+  align-items: center;
+  margin-left: var(--margin-8);
   cursor: pointer;
+  border: 1px solid transparent;
+}
+.employespage__controller__iconreload:hover {
+  border-color: var(--color-text-blue);
 }
 .employespage__controller__iconreload i {
   color: var(--color-text-grey-second);
@@ -31,7 +36,12 @@
 /* end css employes controller */
 
 /* start css employes table */
-.employespage__table {
+.employespage .employespage__table {
+  max-height: calc(100vh - (40px + 92px + 18px + 50px + 18px + 18px + 24px));
+  overflow-y: auto;
+}
+.employespage .employespage__table::-webkit-scrollbar {
+  display: none;
 }
 .employespage__table .employespage__table__action__dropdown {
   position: relative;
@@ -97,3 +107,79 @@
   gap: 8px;
 }
 /* end css employes table */
+
+/* start css employespage_employeeform */
+#employespage__employeeform form {
+  position: relative;
+  width: 100%;
+  max-height: calc(100vh - var(--margin-28));
+  margin: var(--margin-28);
+  background-color: var(--color-bg-white);
+  cursor: default;
+  padding: var(--padding-28) var(--padding-28) var(--padding-18)
+    var(--padding-28);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#employespage__employeeform form::-webkit-scrollbar {
+  display: none;
+}
+/* btn close */
+#employespage__employeeform .employespage__employeeform--close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--size-text-md);
+  background-color: var(--color-bg-white);
+  color: var(--color-text-grey);
+  transition: color var(--time-transition) ease,
+    background-color var(--time-transition) ease;
+}
+#employespage__employeeform .employespage__employeeform--close:hover {
+  background-color: var(--color-border-red);
+  color: var(--color-text-white);
+}
+/* heading */
+#employespage__employeeform .employespage__employeeform__heading {
+  display: flex;
+  align-items: center;
+  padding-bottom: var(--padding-28);
+}
+#employespage__employeeform .employespage__employeeform__heading--title {
+  font-family: notosans semibold;
+  color: var(--color-text-black);
+  font-size: var(--size-text-lg);
+}
+
+/* body */
+#employespage__employeeform .employespage__employeeform__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-18);
+}
+#employespage__employeeform
+  .employespage__employeeform__body::-webkit-scrollbar {
+  display: none;
+}
+/* footer */
+#employespage__employeeform .employespage__employeeform__footer {
+  margin-top: var(--margin-28);
+  padding-top: var(--padding-28);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#employespage__employeeform .employespage__employeeform__footer__right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--padding-8);
+}
+/* end css employespage_employeeform */
