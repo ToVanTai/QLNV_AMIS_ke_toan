@@ -25,11 +25,11 @@
 .input__controller input[type='file'],
 .input__controller input[type='date'],
 .input__controller input[type='datetime'],
+.input__controller input[type='time'],
 .input__controller input[type='number'],
 .input__controller input[type='password'],
 .input__controller input[type='tel'],
 .input__controller input[type='submit'],
-.input__controller input[type='time'],
 .input__controller select {
   outline: none;
   height: var(--input-height);
@@ -43,6 +43,11 @@
   font-size: var(--size-text-sm);
   font-family: notosans regular;
   border-radius: var(--border-radius);
+}
+.input__controller input[type='date'],
+.input__controller input[type='datetime'],
+.input__controller input[type='time'] {
+  text-align: center;
 }
 .input__controller input.italic::placeholder {
   font-style: italic;

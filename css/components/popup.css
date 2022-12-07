@@ -8,8 +8,8 @@
   align-items: flex-start;
   cursor: pointer;
   transform: translateY(-100%);
-  transition: transform var(--time-transition) ease;
 }
 .popup.show {
+  transition: transform var(--time-transition) ease;
   transform: translateY(0);
 }

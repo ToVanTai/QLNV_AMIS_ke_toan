@@ -37,10 +37,46 @@
 
 /* start css employes table */
 .employespage .employespage__table {
-  max-height: calc(100vh - (40px + 92px + 18px + 50px + 18px + 18px + 24px));
+  height: calc(100vh - (40px + 92px + 18px + 50px + 18px + 18px + 24px));
+  position: relative;
+  overflow: hidden;
+}
+.employespage .employespage__table.pending::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: url(/assets/loading.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50px 50px;
+  animation: pendingRotate 2s linear 0s infinite reverse;
+}
+.employespage .employespage__table.pending::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 16%);
+}
+@keyframes pendingRotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+.employespage .employespage__table table {
+  display: block;
+  height: 100%;
   overflow-y: auto;
 }
-.employespage .employespage__table::-webkit-scrollbar {
+.employespage .employespage__table table::-webkit-scrollbar {
   display: none;
 }
 .employespage__table .employespage__table__action__dropdown {
@@ -149,19 +185,32 @@
 #employespage__employeeform .employespage__employeeform__heading {
   display: flex;
   align-items: center;
-  padding-bottom: var(--padding-28);
+  padding-bottom: var(--padding-10);
 }
-#employespage__employeeform .employespage__employeeform__heading--title {
+#employespage__employeeform .employespage__employeeform__heading--titleshow,
+#employespage__employeeform
+  .employespage__employeeform__heading--titlecreatenew {
+  display: none;
   font-family: notosans semibold;
   color: var(--color-text-black);
   font-size: var(--size-text-lg);
 }
-
+#employespage__employeeform.showinfo
+  .employespage__employeeform__heading--titleshow {
+  display: block;
+}
+#employespage__employeeform.createnew
+  .employespage__employeeform__heading--titlecreatenew {
+  display: block;
+}
 /* body */
 #employespage__employeeform .employespage__employeeform__body {
   display: flex;
   flex-direction: column;
-  gap: var(--padding-18);
+  /* gap: var(--padding-18); */
+}
+#employespage__employeeform .employespage__employeeform__body .input__label {
+  margin-top: var(--padding-18);
 }
 #employespage__employeeform
   .employespage__employeeform__body::-webkit-scrollbar {
@@ -181,5 +230,18 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--padding-8);
+}
+#employespage__employeeform__footer__btncreatenew,
+#employespage__employeeform__footer__btnupdate {
+  display: none;
+}
+
+#employespage__employeeform.showinfo
+  #employespage__employeeform__footer__btnupdate {
+  display: block;
+}
+#employespage__employeeform.createnew
+  #employespage__employeeform__footer__btncreatenew {
+  display: block;
 }
 /* end css employespage_employeeform */
