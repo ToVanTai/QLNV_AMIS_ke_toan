@@ -1,11 +1,12 @@
 .popup {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 999;
   background-color: rgb(0, 0, 0, 40%);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  padding: var(--padding-28) 0px;
   cursor: pointer;
   transform: translateY(-100%);
 }

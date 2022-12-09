@@ -145,17 +145,18 @@
 /* end css employes table */
 
 /* start css employespage_employeeform */
+
 #employespage__employeeform form {
   position: relative;
-  width: 100%;
-  max-height: calc(100vh - var(--margin-28));
-  margin: var(--margin-28);
+  width: var(--employeeform-width);
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: var(--color-bg-white);
   cursor: default;
   padding: var(--padding-28) var(--padding-28) var(--padding-18)
     var(--padding-28);
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 #employespage__employeeform form::-webkit-scrollbar {
   display: none;
@@ -225,8 +226,14 @@
   justify-content: space-between;
   align-items: center;
 }
+.employespage__employeeform__footer {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
 #employespage__employeeform .employespage__employeeform__footer__right {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   gap: var(--padding-8);
@@ -235,7 +242,6 @@
 #employespage__employeeform__footer__btnupdate {
   display: none;
 }
-
 #employespage__employeeform.showinfo
   #employespage__employeeform__footer__btnupdate {
   display: block;
@@ -245,3 +251,47 @@
   display: block;
 }
 /* end css employespage_employeeform */
+
+/* start css employespage__popupnotify */
+.employespage__popupnotify {
+  width: var(--popupnotify-width);
+  background-color: var(--color-bg-white);
+  border-radius: var(--border-radius);
+  padding: var(--padding-28);
+}
+.employespage__popupnotify__body {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--padding-28);
+  margin-bottom: var(--margin-28);
+}
+.employespage__popupnotify__body__icon {
+  height: 70px;
+  flex-basis: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-image: url(/assets/img/warning-yellow.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.popup-warningred .employespage__popupnotify__body__icon {
+  background-image: url(/assets//img//warning-red.png);
+}
+.popup-question .employespage__popupnotify__body__icon {
+  background-image: url(/assets//img/warning-question.png);
+}
+.employespage__popupnotify__body__messenger {
+  flex-grow: 1;
+  color: var(--color-text-grey);
+}
+.employespage__popupnotify__footer {
+  padding-top: var(--padding-28);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* start css employespage__popupnotify */

@@ -19,7 +19,8 @@
 .btn:hover {
   background-color: var(--color-text-white-second);
 }
-.btn:active {
+.btn:active,
+.btn:focus {
   background-color: var(--color-bg-grey-four);
 }
 
@@ -41,7 +42,8 @@
   background-color: var(--color-bg-green-hover);
   border-color: var(--color-bg-green-hover);
 }
-.btn.btn-primary:active {
+.btn.btn-primary:active,
+.btn.btn-primary:focus {
   background-color: var(--color-bg-green-press);
 }
 
