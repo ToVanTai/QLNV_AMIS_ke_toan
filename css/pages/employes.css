@@ -41,9 +41,11 @@
   position: relative;
   /* overflow: hidden; */
 }
-.employespage .employespage__table.pending::before {
+.employespage .employespage__table.pending::before,
+#employespage__employeeform.pending form::before {
   content: '';
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -54,14 +56,15 @@
   background-size: 50px 50px;
   animation: pendingRotate 2s linear 0s infinite reverse;
 }
-.employespage .employespage__table.pending::after {
+.employespage .employespage__table.pending::after,
+#employespage__employeeform.pending form::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 100%;
-  background-color: rgba(0, 0, 0, 16%);
+  background-color: transparent;
 }
 @keyframes pendingRotate {
   from {
@@ -74,10 +77,11 @@
 .employespage .employespage__table table {
   display: block;
   height: 100%;
-  overflow-y: auto;
+  width: 100%;
+  overflow: auto;
 }
 .employespage .employespage__table table::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 .employespage__table .employespage__table__action__dropdown {
   position: relative;
@@ -161,6 +165,7 @@
 #employespage__employeeform form::-webkit-scrollbar {
   display: none;
 }
+
 /* btn close */
 #employespage__employeeform .employespage__employeeform--close {
   position: absolute;

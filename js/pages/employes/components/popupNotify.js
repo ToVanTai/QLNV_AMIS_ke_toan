@@ -7,12 +7,12 @@ import { $ } from "/js/common/index.js"
  * type: popup-warningyellow, popup-warningred, popup-question
  * messengers: []
  */
-export function showPopupNotify (messengers = [], type = "popup-warningyellow") {
+export function showPopupNotify (messengers = [], type = null) {
   let popupNotifyElm = $("#employespage__popupnotify")
   if (type == "popup-warningred") {
     popupNotifyElm.classList.remove("popup-question")
     popupNotifyElm.classList.add("popup-warningred")
-  } else if (type = "popup-question") {
+  } else if (type == "popup-question") {
     popupNotifyElm.classList.remove("popup-warningred")
     popupNotifyElm.classList.add("popup-question")
   } else {

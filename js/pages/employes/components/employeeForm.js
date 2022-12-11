@@ -94,7 +94,9 @@ async function showPopupEmployeeCreatenew () {
     employeeformElm.classList.add("show")
     clearForm()
     //lấy mã nhân viên mới và danh sách phòng ban
+    showPendingForm()
     await Promise.all([getDepartments(), getNewEmployeeCode()])
+    hidePendingForm()
     $("#txtEmployeeCode").value = newEmployeeCode
     var departmentsHtml = ""
     for (let department of departments) {
@@ -104,6 +106,7 @@ async function showPopupEmployeeCreatenew () {
     //focus vào input tên nhân viên
     $("#txtEmployeeName").focus()
   } catch (err) {
+    hidePendingForm()
     console.log(err);
   }
 }
@@ -120,6 +123,24 @@ export function closePopupEmployee () {
   } catch (err) { console.log(err); }
 }
 
+/**
+ * useTo: hiển thị pending form employee
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022
+ */
+export function showPendingForm () {
+  $("#employespage__employeeform").classList.add("pending")
+}
+/**
+ * useTo: ẩn thị pending form employee
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022
+ */
+export function hidePendingForm () {
+  $("#employespage__employeeform").classList.remove("pending")
+}
 /**
  * useTo: xử lý khi submit form thêm mới nhân viên
  * updateBy: tovantai_7/12/2022
@@ -161,17 +182,20 @@ function handleSubmitCreateEmployeeForm (e) {
       //gọi api đẩy dữ liệu lên server
       var headers = new Headers()
       headers.append("Content-Type", "application/json")
+      showPendingForm()
       fetch(employesUrl, {
         method: "POST",
         body: JSON.stringify(formData),
         headers
       }).then(res => {
-        if (res.status == 200) {
+        if (res.status == 201) {
           //đóng form
+          hidePendingForm()
           closePopupEmployee()
         } else {
           //hiện lỗi
           res.json().then(res => {
+            hidePendingForm()
             showPopupNotify([res.userMsg])
             //đóng popup
             $("#popupnotify__btnclose").onclick = function () {
@@ -183,6 +207,7 @@ function handleSubmitCreateEmployeeForm (e) {
       })
     }
   } catch (err) {
+    hidePendingForm()
     console.log(err);
   }
 }

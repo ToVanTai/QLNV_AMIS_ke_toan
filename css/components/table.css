@@ -20,6 +20,7 @@
   text-transform: uppercase;
   background-color: var(--color-bg-grey-four);
   padding: var(--padding-10) var(--padding-12);
+  white-space: nowrap;
 }
 
 .table th.checkbox,

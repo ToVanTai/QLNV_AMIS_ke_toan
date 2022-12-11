@@ -113,7 +113,7 @@ function startFn () {
     hidePendingTable();
     generateEmployes();
   }
-    , 2000)
+    , 500)
 }
 startFn()
 
