@@ -39,7 +39,7 @@
 .employespage .employespage__table {
   height: calc(100vh - (40px + 92px + 18px + 50px + 18px + 18px + 24px));
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .employespage .employespage__table.pending::before {
   content: '';

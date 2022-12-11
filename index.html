@@ -188,12 +188,29 @@
                   <th>Tên nhân viên</th>
                   <th>Giới tính</th>
                   <th class="date">Ngày sinh</th>
-                  <th>Số cmnd</th>
+                  <th>
+                    Số
+                    <div class="tooltip tooltip__bottom">
+                      cmnd
+                      <div class="tooltip__messenger">
+                        số chứng minh nhân dân
+                      </div>
+                    </div>
+                  </th>
                   <th>Chức danh</th>
                   <th>Tên đơn vị</th>
                   <th>Số tài khoản</th>
                   <th>Tên ngân hàng</th>
-                  <th>Chi nhánh TK ngân hàng</th>
+                  <th>
+                    Chi nhánh
+                    <div class="tooltip tooltip__bottom">
+                      TK
+                      <div class="tooltip__messenger">
+                        chi nhánh tài khoản ngân hàng
+                      </div>
+                    </div>
+                    ngân hàng
+                  </th>
                   <th class="more">Chức năng</th>
                 </tr>
               </thead>
@@ -310,40 +327,63 @@
                     <!-- idemployee, name -->
                     <div class="row">
                       <div class="col col-4">
-                        <label class="input__label required">Mã</label>
+                        <label
+                          class="input__label required"
+                          for="txtEmployeeCode"
+                          >Mã</label
+                        >
                         <div class="input__controller">
-                          <input type="text" class="input__primary" required />
+                          <input
+                            type="text"
+                            class="input__primary"
+                            id="txtEmployeeCode"
+                            name="employeeCode"
+                            readonly />
                         </div>
                       </div>
                       <div class="col col-8" style="padding-left: 8px">
-                        <label class="input__label required">Tên</label>
+                        <label
+                          class="input__label required"
+                          for="txtEmployeeName"
+                          >Tên</label
+                        >
                         <div class="input__controller">
-                          <input type="text" class="input__primary" required />
+                          <input
+                            type="text"
+                            class="input__primary"
+                            id="txtEmployeeName"
+                            name="employeeName" />
                         </div>
                       </div>
                     </div>
                     <!-- đơn vị -->
                     <div class="row">
                       <div class="col col-12">
-                        <div class="input__label required">Đơn vị</div>
+                        <label
+                          class="input__label required"
+                          for="txtDepartmentId"
+                          >Đơn vị</label
+                        >
                         <div class="input__controller">
-                          <select class="input__primary">
-                            <option>Phòng nhân sự</option>
-                            <option>Phòng hành chính</option>
-                          </select>
+                          <select
+                            class="input__primary"
+                            id="txtDepartmentId"
+                            name="departmentId"></select>
                         </div>
                       </div>
                     </div>
                     <!-- chức danh -->
                     <div class="row">
                       <div class="col col-12">
-                        <div class="input__label">Chức danh</div>
+                        <label class="input__label" for="txtPositionName"
+                          >Chức danh</label
+                        >
                         <div class="input__controller">
                           <input
                             type="text"
-                            name=""
+                            name="positionName"
                             class="input__primary"
-                            id="" />
+                            id="txtPositionName" />
                         </div>
                       </div>
                     </div>
@@ -352,16 +392,23 @@
                     <!-- birthday, gender, -->
                     <div class="row">
                       <div class="col col-4">
-                        <label class="input__label">Ngày sinh</label>
+                        <label class="input__label" for="txtDateOfBirth"
+                          >Ngày sinh</label
+                        >
                         <div class="input__controller">
-                          <input type="date" class="input__primary" />
+                          <input
+                            type="date"
+                            class="input__primary"
+                            id="txtDateOfBirth"
+                            name="dateOfBirth" />
                         </div>
                       </div>
                       <div class="col col-8" style="padding-left: 8px">
                         <div class="input__label">Giới tính</div>
                         <div
                           class="input__controller group"
-                          style="height: 32px">
+                          style="height: 32px"
+                          id="txtGender">
                           <input
                             type="radio"
                             name="gender"
@@ -386,7 +433,7 @@
                     <!-- indentitycard, ngay cap -->
                     <div class="row">
                       <div class="col col-8" style="padding-right: 8px">
-                        <div class="input__label">
+                        <label class="input__label" for="txtIdentityNumber">
                           Số
                           <div class="tooltip">
                             CMND
@@ -394,36 +441,41 @@
                               Số chứng minh nhân dân
                             </div>
                           </div>
-                        </div>
+                        </label>
                         <div class="input__controller">
                           <input
                             type="text"
                             class="input__primary"
-                            name=""
-                            id="" />
+                            name="identityNumber"
+                            id="txtIdentityNumber"
+                            value="sfsfsf" />
                         </div>
                       </div>
                       <div class="col col-4">
-                        <div class="input__label">Ngày cấp</div>
+                        <label class="input__label" for="txtIdentityDate"
+                          >Ngày cấp</label
+                        >
                         <div class="input__controller">
                           <input
                             type="date"
-                            name=""
+                            name="identityDate"
                             class="input__primary"
-                            id="" />
+                            id="txtIdentityDate" />
                         </div>
                       </div>
                     </div>
                     <!-- nơi cấp -->
                     <div class="row">
                       <div class="col col-12">
-                        <div class="input__label">Nơi cấp</div>
+                        <label class="input__label" for="txtIdentityPlace"
+                          >Nơi cấp</label
+                        >
                         <div class="input__controller">
                           <input
                             type="text"
-                            name=""
+                            name="identityPlace"
                             class="input__primary"
-                            id="" />
+                            id="txtIdentityPlace" />
                         </div>
                       </div>
                     </div>
@@ -432,15 +484,19 @@
                 <div></div>
                 <!-- address -->
                 <div class="row" style="margin-top: 18px">
-                  <div class="input__label">Địa chỉ</div>
+                  <label class="input__label" for="txtAddress">Địa chỉ</label>
                   <div class="input__controller">
-                    <input type="text" name="" class="input__primary" id="" />
+                    <input
+                      type="text"
+                      name="address"
+                      id="txtAddress"
+                      class="input__primary" />
                   </div>
                 </div>
                 <!-- phone, điện thoại cố định, email -->
                 <div class="row">
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">
+                    <label class="input__label" for="txtPhoneNumber">
                       <div class="tooltip">
                         ĐT
                         <div class="tooltip__messenger">
@@ -448,54 +504,80 @@
                         </div>
                       </div>
                       di đông
-                    </div>
+                    </label>
                     <div class="input__controller">
-                      <input type="tel" name="" class="input__primary" id="" />
+                      <input
+                        type="tel"
+                        name="phoneNumber"
+                        id="txtPhoneNumber"
+                        class="input__primary" />
                     </div>
                   </div>
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">
+                    <label class="input__label" for="txtTelephoneNumber">
                       <div class="tooltip">
                         ĐT
                         <div class="tooltip__messenger">
-                          Số điện thoại di động
+                          Số điện thoại cố định
                         </div>
                       </div>
                       cố định
-                    </div>
+                    </label>
                     <div class="input__controller">
-                      <input type="tel" name="" class="input__primary" id="" />
+                      <input
+                        type="tel"
+                        name="telephoneNumber"
+                        class="input__primary"
+                        id="txtTelephoneNumber" />
                     </div>
                   </div>
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">Email</div>
+                    <label class="input__label" for="txtEmail">Email</label>
                     <div class="input__controller">
                       <input
                         type="email"
-                        name=""
+                        name="email"
                         class="input__primary"
-                        id="" />
+                        id="txtEmail" />
                     </div>
                   </div>
                 </div>
                 <!-- accountbank, bankname -->
                 <div class="row">
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">Tài khoản ngân hàng</div>
+                    <label class="input__label" for="txtBankAccountNumber"
+                      >Tài khoản ngân hàng</label
+                    >
                     <div class="input__controller">
-                      <input type="text" name="" class="input__primary" id="" />
+                      <input
+                        type="text"
+                        name="bankAccountNumber"
+                        class="input__primary"
+                        id="txtBankAccountNumber" />
                     </div>
                   </div>
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">Tên ngân hàng</div>
+                    <label class="input__label" for="txtBankName"
+                      >Tên ngân hàng</label
+                    >
                     <div class="input__controller">
-                      <input type="text" name="" class="input__primary" id="" />
+                      <input
+                        type="text"
+                        name="bankName"
+                        class="input__primary"
+                        id="txtBankName" />
                     </div>
                   </div>
                   <div class="col col-3" style="padding-right: 8px">
-                    <div class="input__label">Chi nhánh</div>
+                    <label class="input__label" for="txtBankBranchName"
+                      >Chi nhánh</label
+                    >
                     <div class="input__controller">
-                      <input type="text" name="" class="input__primary" id="" />
+                      <input
+                        type="text"
+                        name="bankBranchName"
+                        class="input__primary"
+                        id="txtBankBranchName" />
                     </div>
                   </div>
                 </div>
@@ -546,7 +628,9 @@
                 </div>
               </div>
               <div class="employespage__popupnotify__footer">
-                <div class="btn btn-primary">Đóng</div>
+                <div class="btn btn-primary" id="popupnotify__btnclose">
+                  Đóng
+                </div>
               </div>
             </div>
           </div>

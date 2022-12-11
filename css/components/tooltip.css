@@ -33,6 +33,18 @@
   border-top-color: var(--color-border-red);
   cursor: pointer;
 }
+.tooltip.tooltip__bottom .tooltip__messenger {
+  top: unset;
+  bottom: 0;
+  transform: translate(-50%, 100%);
+}
+.tooltip.tooltip__bottom .tooltip__messenger::after {
+  content: '';
+  bottom: unset;
+  top: 0;
+  transform: translate(-50%, -100%);
+  border-color: transparent transparent var(--color-border-red) transparent;
+}
 .tooltip:hover .tooltip__messenger {
   display: block;
 }

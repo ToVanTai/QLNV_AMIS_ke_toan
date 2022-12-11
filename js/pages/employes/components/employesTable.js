@@ -8,11 +8,12 @@ import { showPopupEmployeeShowinfo } from "./employeeForm.js"
  * createdAt: 7/12/2022 
  */
 export function generateEmployes () {
-  // fake data employes
-  var employesContainer = $("#employestable")
-  var employesHtml = ""
-  for (let i = 1; i <= 20; i++) {
-    employesHtml += `<tr>
+  try {
+    // fake data employes
+    var employesContainer = $("#employestable")
+    var employesHtml = ""
+    for (let i = 1; i <= 20; i++) {
+      employesHtml += `<tr>
     <td class="checkbox"><input type="checkbox" /></td>
     <td>00012</td>
     <td>Nguyễn Văn Liệt</td>
@@ -48,18 +49,22 @@ export function generateEmployes () {
       </div>
     </td>
   </tr>`
-  }
-  employesContainer.innerHTML = employesHtml
+    }
+    employesContainer.innerHTML = employesHtml
 
-  //add event click để hiện form thông tin chi tiết nhân viên
-  var employeeListHtml = $$("#employestable tr")
-  for (let i = 0; i < employeeListHtml.length; i++) {
-    employeeListHtml[i].addEventListener("click", function (event) {
-      if (!event.target.closest(".checkbox") && !event.target.closest(".more")) {
-        showPopupEmployeeShowinfo()
-      }
-    })
+    //add event dblclick để hiện form thông tin chi tiết nhân viên
+    var employeeListHtml = $$("#employestable tr")
+    for (let i = 0; i < employeeListHtml.length; i++) {
+      employeeListHtml[i].addEventListener("dblclick", function (event) {
+        if (!event.target.closest(".checkbox") && !event.target.closest(".more")) {
+          showPopupEmployeeShowinfo()
+        }
+      })
+    }
+  } catch (err) {
+    console.log(err);
   }
+
 }
 
 /**
@@ -69,8 +74,13 @@ export function generateEmployes () {
  * createdAt: 7/12/2022 
  */
 export function showPendingTable () {
-  let employesTableElm = $(".employespage .employespage__table")
-  employesTableElm.classList.add("pending")
+  try {
+    let employesTableElm = $(".employespage .employespage__table")
+    employesTableElm.classList.add("pending")
+  } catch (err) {
+    console.log(err);
+  }
+
 }
 
 /**
@@ -80,8 +90,13 @@ export function showPendingTable () {
  * createdAt: 7/12/2022 
  */
 export function hidePendingTable () {
-  let employesTableElm = $(".employespage .employespage__table")
-  employesTableElm.classList.remove("pending")
+  try {
+    let employesTableElm = $(".employespage .employespage__table")
+    employesTableElm.classList.remove("pending")
+  } catch (err) {
+    console.log(err);
+  }
+
 }
 
 /**
@@ -93,6 +108,7 @@ export function hidePendingTable () {
  */
 function startFn () {
   showPendingTable()
+  $("#employestable").innerHTML = ""
   setTimeout(() => {
     hidePendingTable();
     generateEmployes();
