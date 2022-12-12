@@ -1,11 +1,13 @@
 import { $, $$ } from "/js/common/index.js"
+import employesMainFN from "./employesTable.js"
+import EmployesFilter from "../classes/EmployesFilter.js"
 /**
  * useTo: rendering pagination khi click vào pagination, thêm sự kiện click vào pagination sau khi rendering pagination
  * updateBy: tovantai_7/12/2022
  * author: tovantai
  * createdAt: 7/12/2022
  */
-function employesPagination (total, current) {
+export default function employesPagination (total, current) {
   try {
     // rendering pagination khi click vào pagination
     var paginationElm = $(".employespage__pagination__right--pagination .pagination")
@@ -65,10 +67,14 @@ function employesPagination (total, current) {
 
     // thêm sự kiện click vào pagination sau khi rendering pagination
     var paginationListItem = $$(".employespage__pagination__right--pagination .pagination li:not(.dots)")
+    let employeeFilterObj = new EmployesFilter()
     for (let i = 0; i < paginationListItem.length; i++) {
       if (!paginationListItem[i].classList.contains("active")) {
         paginationListItem[i].addEventListener("click", function () {
           let pageDirection = Number(this.dataset.index)
+          employeeFilterObj.pageNumber = Number(this.dataset.index)
+          EmployesFilter.changeUrl(employeeFilterObj)
+          employesMainFN()
           employesPagination(total, pageDirection)
         })
       }
@@ -79,4 +85,34 @@ function employesPagination (total, current) {
 
 
 }
-employesPagination(10, 1)
+
+/**
+ * useTo: rendering pagination khi click vào pagination, thêm sự kiện click vào pagination sau khi rendering pagination
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022
+ */
+export function employesSelectQuantities (quantity) {
+  try {
+    var employesSelectQuantitiesElm = $(".employespage__pagination__right--selectquantity select")
+    var employesSelectQuantitiesItems = `
+      <option value="5" ${quantity == 5 ? "selected" : ""}>5 bản ghi trên 1 trang</option>
+      <option value="10" ${quantity == 10 ? "selected" : ""}>10 bản ghi trên 1 trang</option>
+      <option value="15" ${quantity == 15 ? "selected" : ""}>15 bản ghi trên 1 trang</option>
+      <option value="20" ${quantity == 20 ? "selected" : ""}>20 bản ghi trên 1 trang</option>
+    `
+    employesSelectQuantitiesElm.innerHTML = employesSelectQuantitiesItems
+
+    //add sự kiện onchange
+    let employeeFilterObj = new EmployesFilter()
+    employesSelectQuantitiesElm.onchange = function (e) {
+      employeeFilterObj.pageSize = Number(e.target.value)
+      EmployesFilter.changeUrl(employeeFilterObj)
+      employesMainFN()
+    }
+  }
+  catch (err) {
+    console.log(err);
+  }
+
+}

@@ -1,14 +1,14 @@
 /**
- * useTo: lọc bản ghi employes
+ * useTo: lấy query, tạo querystring, thay đổi history
  * updatedAt: tovantai_11/12/2022
  * author: tovantai
  * createdAt: 11/12/2022 
  */
 export default class EmployesFilter {
-  constructor(url) {
+  constructor() {
     let urlSearchParams = new URLSearchParams(window.location.search)
     const params = Object.fromEntries(urlSearchParams.entries())
-    this.pageSize = params.pageSize || 10//số bản ghi /1 trang
+    this.pageSize = params.pageSize || 5//số bản ghi /1 trang
     this.pageNumber = params.pageNumber || 1,//trang hiện tại
       this.employeeFilter = params.employeeFilter || null,//mã||tên||số điện thoại
       this.departmentId = params.departmentId || null,//mã phòng ban

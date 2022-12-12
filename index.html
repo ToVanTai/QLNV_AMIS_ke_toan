@@ -165,12 +165,16 @@
 
         <!-- start employes page  -->
         <div class="employespage">
+          <!-- tìm kiếm theo tên, mã, số điện thoại -->
           <div class="employespage__controller">
-            <div class="input__controller input__iconend">
+            <div
+              class="input__controller input__iconend"
+              id="employespage__controller__search">
               <input
                 class="italic input__primary"
                 type="text"
-                placeholder="Tìm theo mã, tên nhân viên" />
+                placeholder="Tìm theo mã, tên nhân viên"
+                name="txtEmployeeFilter" />
               <div class="input__icon--end"><i class="fas fa-search"></i></div>
               <!-- <div class="input__error_messenger">da co loi</div> -->
             </div>
@@ -178,7 +182,7 @@
               <i class="fas fa-redo"></i>
             </div>
           </div>
-          <!-- pending -->
+          <!-- thêm class tại đây pending -->
           <div class="employespage__table">
             <table class="table">
               <thead>
@@ -264,8 +268,10 @@
               <div class="employespage__pagination__right--selectquantity">
                 <div class="input__controller input__iconend">
                   <select class="input__primary">
-                    <option>20 bản ghi trên 1 trang</option>
-                    <option>10 bản ghi trên 1 trang</option>
+                    <option value="5">5 bản ghi trên 1 trang</option>
+                    <option value="10">10 bản ghi trên 1 trang</option>
+                    <option value="15">15 bản ghi trên 1 trang</option>
+                    <option value="20">20 bản ghi trên 1 trang</option>
                   </select>
                   <div class="input__icon--end">
                     <i class="fas fa-sort-down"></i>
