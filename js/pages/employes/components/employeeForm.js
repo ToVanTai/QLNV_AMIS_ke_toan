@@ -170,10 +170,12 @@ function handleSubmitCreateEmployeeForm (e) {
     //hiển thị thông báo nếu có lỗi
     if (listErr.length != 0) {
       showPopupNotify(listErr)
+      $("#popupnotify__btnclose").focus()
       //đóng popup
       $("#popupnotify__btnclose").onclick = function () {
         closePopupNotify()
         firstErr.focus()
+        $("#popupnotify__btnclose").onclick = null
       }
     } else {
       //lấy form

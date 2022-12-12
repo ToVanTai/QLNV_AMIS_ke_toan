@@ -5,6 +5,7 @@ import employesPagination, { employesSelectQuantities } from "./employesPaginati
 import EmployesFilter from "../classes/EmployesFilter.js"
 import { httpGetAsync } from "/js/utils/request.js"
 import { formatDate } from "/js/utils/format.js"
+import { showPopupNotify, closePopupNotify } from "./popupNotify.js"
 /**
  * useTo: gender employes vào bảng
  * updateBy: tovantai_7/12/2022
@@ -42,7 +43,7 @@ export function renderEmployes (data = []) {
             Nhân bản
           </div>
           <div
-          data-delete=${item.EmployeeId}
+          data-delete=${item.EmployeeId} data-name=${item.EmployeeName} data-code=${item.EmployeeCode}
             class="employespage__table__action__dropdown--item delete">
             Xóa
           </div>
@@ -65,6 +66,14 @@ export function renderEmployes (data = []) {
         if (!event.target.closest(".checkbox") && !event.target.closest(".more")) {
           showPopupEmployeeShowinfo()
         }
+      })
+    }
+
+    //add event click để hiện popup xóa
+    var employeeListBtnDelHtml = $$("#employestable tr .employespage__table__action__dropdown--item.delete")
+    for (let i = 0; i < employeeListBtnDelHtml.length; i++) {
+      employeeListBtnDelHtml[i].addEventListener("click", function (event) {
+        handleShowPopupDelEmployee(event)
       })
     }
   } catch (err) {
@@ -162,15 +171,93 @@ employesMainFN()
  * createdAt: 7/12/2022 
  */
 function handleSearchEmployes () {
-  var txtEmployeeFilter = $("#employespage__controller__search input[name='txtEmployeeFilter']")
-  if (txtEmployeeFilter.value) {
+  try {
+    var txtEmployeeFilter = $("#employespage__controller__search input[name='txtEmployeeFilter']")
     var employeeFilter = new EmployesFilter()
-    employeeFilter.employeeFilter = txtEmployeeFilter.value
+    if (txtEmployeeFilter.value !== "") {
+      console.log(1);
+      employeeFilter.employeeFilter = txtEmployeeFilter.value
+    } else {
+      console.log(2);
+      employeeFilter.employeeFilter = ""
+    }
     employeeFilter.pageNumber = 1
     EmployesFilter.changeUrl(employeeFilter)
     employesMainFN()
+  } catch (err) {
+
   }
+
 }
+
+/**
+ * useTo: hiển thị popup và add sự kiện cho các button
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022 
+ */
+function handleShowPopupDelEmployee (event) {
+  try {
+    let employeeId = event.target.dataset.delete
+    let employeeName = event.target.dataset.name
+    let employeeCode = event.target.dataset.code
+    showPopupNotify([`Bạn có muấn xóa nhân viên: "${employeeName}" - "${employeeCode}"?`], "popup-question")
+    $("#popupnotify__btnclose").focus()
+
+    //click vào nút đóng
+    $("#popupnotify__btnclose").onclick = function () {
+      handleClosePopupDelEmployee()
+    }
+    //click vào overlay
+    $("#employespage__popupnotify").onclick = function (e) {
+      if (e.target.matches("#employespage__popupnotify")) {
+        handleClosePopupDelEmployee()
+      }
+    }
+    //click vào nút đồng ý
+    $("#popupnotify__btnok").onclick = async function () {
+      try {
+        $("#employespage__popupnotify").classList.add("pending")
+        await new Promise((resolve, reject) => {
+          httpGetAsync(`${employesUrl}/${employeeId}`, { method: "DELETE" }, resolve, reject, null)
+        }).then(res => {
+          if (res.status == 200) {
+            $("#employespage__popupnotify").classList.remove("pending")
+            handleClosePopupDelEmployee()
+          } else {
+            $("#employespage__popupnotify").classList.remove("pending")
+            handleClosePopupDelEmployee()
+          }
+        }).catch(err => {
+          $("#employespage__popupnotify").classList.remove("pending")
+          handleClosePopupDelEmployee()
+          // xử lý khi không xóa đc
+        })
+      } catch (err) {
+
+      }
+
+    }
+  } catch (err) {
+    console.log(err);
+  }
+
+}
+
+/**
+ * useTo: đóng popup và remove sự kiện cho các button
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022 
+ */
+function handleClosePopupDelEmployee () {
+  closePopupNotify()
+  $("#popupnotify__btnclose").onclick = null
+  $("#popupnotify__btnok").onclick = null
+}
+
+
+
 //thêm sự kiện cho nút tìm kiếm nhân viên theo mã, tên...
 var btnEmployesSearch = $("#employespage__controller__search .input__icon--end")
 btnEmployesSearch.addEventListener("click", handleSearchEmployes)

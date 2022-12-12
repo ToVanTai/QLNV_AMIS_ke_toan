@@ -107,6 +107,7 @@ export function employesSelectQuantities (quantity) {
     let employeeFilterObj = new EmployesFilter()
     employesSelectQuantitiesElm.onchange = function (e) {
       employeeFilterObj.pageSize = Number(e.target.value)
+      employeeFilterObj.pageNumber = 1
       EmployesFilter.changeUrl(employeeFilterObj)
       employesMainFN()
     }

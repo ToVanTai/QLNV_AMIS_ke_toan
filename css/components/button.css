@@ -46,5 +46,21 @@
 .btn.btn-primary:focus {
   background-color: var(--color-bg-green-press);
 }
-
 /* btn-primary */
+
+/* btn-danger */
+.btn.btn-danger {
+  border-color: var(--color-border-red);
+  background: var(--color-border-red);
+  color: var(--color-text-white);
+}
+.btn.btn-danger:hover {
+  background-color: var(--color-border-red-hover);
+  border-color: var(--color-border-red-hover);
+}
+.btn.btn-danger:active,
+.btn.btn-danger:focus {
+  background-color: var(--color-border-red-active);
+  border-color: var(--color-border-red-active);
+}
+/* btn-danger */

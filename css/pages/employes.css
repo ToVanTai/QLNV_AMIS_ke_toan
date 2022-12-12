@@ -41,6 +41,8 @@
   position: relative;
   /* overflow: hidden; */
 }
+
+#employespage__popupnotify.pending .employespage__popupnotify::before,
 .employespage .employespage__table.pending::before,
 #employespage__employeeform.pending form::before {
   content: '';
@@ -56,6 +58,7 @@
   background-size: 50px 50px;
   animation: pendingRotate 2s linear 0s infinite reverse;
 }
+#employespage__popupnotify.pending .employespage__popupnotify::after,
 .employespage .employespage__table.pending::after,
 #employespage__employeeform.pending form::after {
   content: '';
@@ -259,10 +262,12 @@
 
 /* start css employespage__popupnotify */
 .employespage__popupnotify {
+  position: relative;
   width: var(--popupnotify-width);
   background-color: var(--color-bg-white);
   border-radius: var(--border-radius);
   padding: var(--padding-28);
+  cursor: default;
 }
 .employespage__popupnotify__body {
   display: flex;
@@ -298,5 +303,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 8px;
+}
+#popupnotify__btnok {
+  display: none;
+}
+#employespage__popupnotify.popup-question #popupnotify__btnok {
+  display: block;
 }
 /* start css employespage__popupnotify */

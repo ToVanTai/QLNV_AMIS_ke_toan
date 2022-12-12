@@ -25,6 +25,8 @@
   --color-border: #bebebe;
   --color-border-green: #50b83c;
   --color-border-red: #eb3333;
+  --color-border-red-hover: #e60000;
+  --color-border-red-active: #b80000;
   /* end defind color for border */
 
   /* start defind size for border */
