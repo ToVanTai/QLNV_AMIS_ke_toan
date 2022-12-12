@@ -7,7 +7,7 @@ import { httpGetAsync } from "/js/utils/request.js"
 import { formatDate } from "/js/utils/format.js"
 import { showPopupNotify, closePopupNotify } from "./popupNotify.js"
 /**
- * useTo: gender employes vào bảng
+ * useTo: gender employes vào bảng, thêm sk dblclick hiển thị form chi tiết nhân viên
  * updateBy: tovantai_7/12/2022
  * author: tovantai
  * createdAt: 7/12/2022 
@@ -64,7 +64,7 @@ export function renderEmployes (data = []) {
     for (let i = 0; i < employeeListHtml.length; i++) {
       employeeListHtml[i].addEventListener("dblclick", function (event) {
         if (!event.target.closest(".checkbox") && !event.target.closest(".more")) {
-          showPopupEmployeeShowinfo()
+          showPopupEmployeeShowinfo(data[i])
         }
       })
     }

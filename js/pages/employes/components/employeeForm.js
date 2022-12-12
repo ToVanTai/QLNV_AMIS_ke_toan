@@ -4,7 +4,7 @@ import { httpGetAsync } from "/js/utils/request.js"
 import { showPopupNotify, closePopupNotify } from "../components/popupNotify.js"
 var newEmployeeCode = null
 var departments = null
-
+var employeeIdUpdate = null
 /**
  * useTo: lấy mã nhân viên mới nhất
  * updateBy: tovantai_7/12/2022
@@ -68,12 +68,46 @@ async function getDepartments () {
  * author: tovantai
  * createdAt: 7/12/2022
  */
-export function showPopupEmployeeShowinfo () {
+export async function showPopupEmployeeShowinfo (employee) {
   try {
     var employeeformElm = document.getElementById("employespage__employeeform")
     employeeformElm.classList.remove("createnew")
     employeeformElm.classList.add("showinfo")
     employeeformElm.classList.add("show")
+    employeeIdUpdate = employee.EmployeeId
+    clearForm()
+    $("#txtEmployeeCode").value = employee.EmployeeCode || ""
+    $("#txtEmployeeName").value = employee.EmployeeName || ""
+    $("#txtPositionName").value = employee.PositionName || ""
+    $("#txtDateOfBirth").value = employee.DateOfBirth || "";
+    (Number(employee.Gender) === 1) ? ($("#gender__male").checked = true) : (Number(employee.Gender) === 0) ? ($("#gender__female").checked = true) : ($("#gender__other").checked = true);
+    $("#txtIdentityNumber").value = employee.IdentityNumber || ""
+    $("#txtIdentityDate").value = employee.IdentityDate || ""
+    $("#txtIdentityPlace").value = employee.IdentityPlace || ""
+    $("#txtAddress").value = employee.Address || ""
+    $("#txtPhoneNumber").value = employee.PhoneNumber || ""
+    $("#txtTelephoneNumber").value = employee.TelephoneNumber || ""
+    $("#txtEmail").value = employee.Email || ""
+    $("#txtBankAccountNumber").value = employee.BankAccountNumber || ""
+    $("#txtBankName").value = employee.BankName || ""
+    $("#txtBankBranchName").value = employee.BankBranchName || ""
+    //hiển thị department
+    if (departments == null) {
+      showPendingForm()
+      await getDepartments()
+      hidePendingForm()
+    }
+    var departmentsHtml = ""
+    for (let department of departments) {
+      if (department.DepartmentId == employee.DepartmentId) {
+        departmentsHtml += `<option value="${department.DepartmentId}" selected>${department.DepartmentName}</option>`
+      }
+      departmentsHtml += `<option value="${department.DepartmentId}">${department.DepartmentName}</option>`
+    }
+    $("#txtDepartmentId").innerHTML = departmentsHtml
+    //
+    console.log(departments);
+    console.log(employee);
   } catch (err) {
     console.log(err);
   }
@@ -199,6 +233,7 @@ function handleSubmitCreateEmployeeForm (e) {
           res.json().then(res => {
             hidePendingForm()
             showPopupNotify([res.userMsg])
+            $("#popupnotify__btnclose").focus()
             //đóng popup
             $("#popupnotify__btnclose").onclick = function () {
               closePopupNotify()
@@ -213,7 +248,79 @@ function handleSubmitCreateEmployeeForm (e) {
     console.log(err);
   }
 }
+/**
+ * useTo: xử lý khi submit form cập nhật nhân viên
+ * updateBy: tovantai_12/12/2022
+ * author: tovantai
+ * createdAt: 12/12/2022
+ */
+function handleSubmitUpdateEmployeeForm (e) {
+  try {
+    e.preventDefault()
+    let txtEmployeeName = $("#txtEmployeeName")
+    let txtEmail = $("#txtEmail")
+    let listErr = []
+    let firstErr = ""
 
+    //nếu có lỗi email
+    if (!regularEmail.test(txtEmail.value)) {
+      listErr.unshift("Email không đúng định dạng")
+      txtEmail.focus()
+      firstErr = txtEmail
+    }
+    //nếu có lỗi tên nhân viên
+    if (!txtEmployeeName.value || txtEmployeeName.value.trim().length == 0) {
+      listErr.unshift("Tên không đúng định dạng")
+      txtEmployeeName.focus()
+      firstErr = txtEmployeeName
+    }
+    //hiển thị thông báo nếu có lỗi
+    if (listErr.length != 0) {
+      showPopupNotify(listErr)
+      $("#popupnotify__btnclose").focus()
+      //đóng popup
+      $("#popupnotify__btnclose").onclick = function () {
+        closePopupNotify()
+        firstErr.focus()
+        $("#popupnotify__btnclose").onclick = null
+      }
+    } else {
+      //lấy form
+      let formEmployee = $("#employespage__employeeform form")
+      let formData = Object.fromEntries(new FormData(formEmployee).entries());
+      //gọi api đẩy dữ liệu lên server
+      var headers = new Headers()
+      headers.append("Content-Type", "application/json")
+      showPendingForm()
+      fetch(`${employesUrl}/${employeeIdUpdate}`, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers
+      }).then(res => {
+        if (res.status == 200) {
+          //đóng form
+          hidePendingForm()
+          closePopupEmployee()
+        } else {
+          //hiện lỗi
+          res.json().then(res => {
+            hidePendingForm()
+            showPopupNotify([res.userMsg])
+            $("#popupnotify__btnclose").focus()
+            //đóng popup
+            $("#popupnotify__btnclose").onclick = function () {
+              closePopupNotify()
+            }
+          }
+          )
+        }
+      })
+    }
+  } catch (err) {
+    hidePendingForm()
+    console.log(err);
+  }
+}
 //mở form khi click vào nút thêm nhân viên mới
 var btnOpenCreateEmployeeForm = $("#btn__createnew__employee")
 btnOpenCreateEmployeeForm.addEventListener("click", showPopupEmployeeCreatenew)
@@ -244,3 +351,7 @@ btnFooterResetEmployeeForm.addEventListener("click", function (e) {
 //thêm sự kiện submit form thêm mới nhân viên vào nút cất và thêm
 var btnFooterSubmitCreateEmployeeForm = $("#employespage__employeeform__footer__btncreatenew")
 btnFooterSubmitCreateEmployeeForm.addEventListener('click', handleSubmitCreateEmployeeForm)
+
+//thêm sự kiện submit form cập nhật nhân viên vào nút cất và sửa
+var btnFooterSubmitUpdateEmployeeForm = $("#employespage__employeeform__footer__btnupdate")
+btnFooterSubmitUpdateEmployeeForm.addEventListener('click', handleSubmitUpdateEmployeeForm)
