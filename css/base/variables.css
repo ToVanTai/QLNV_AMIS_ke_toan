@@ -43,6 +43,7 @@
 
   /* start defind width, height */
   --sidebar-width: 180px;
+  --sidebar-icon-width: 46px;
   --header-height: 40px;
   --input-height: 32px;
   --button-height: 36px;

@@ -54,7 +54,7 @@
   color: var(--color-text-white);
 }
 .sidebar__body__item--icon {
-  flex-basis: 46px;
+  flex-basis: var(--sidebar-icon-width);
   flex-shrink: 0;
   height: 100%;
   padding-right: var(--padding-12);

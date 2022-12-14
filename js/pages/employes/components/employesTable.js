@@ -201,7 +201,7 @@ function handleShowPopupDelEmployee (event) {
     let employeeId = event.target.dataset.delete
     let employeeName = event.target.dataset.name
     let employeeCode = event.target.dataset.code
-    showPopupNotify([`Bạn có muấn xóa nhân viên: "${employeeName}" - "${employeeCode}"?`], "popup-question")
+    showPopupNotify([`Bạn có chắc chắn muốn xóa nhân viên ${employeeCode} không?`], "popup-question")
     $("#popupnotify__btnclose").focus()
 
     //click vào nút đóng

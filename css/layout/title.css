@@ -1,6 +1,6 @@
 /* start css title */
 .title {
-  padding: var(--padding-28) var(--padding-24);
+  padding: var(--padding-24);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -105,9 +105,6 @@ export async function showPopupEmployeeShowinfo (employee) {
       departmentsHtml += `<option value="${department.DepartmentId}">${department.DepartmentName}</option>`
     }
     $("#txtDepartmentId").innerHTML = departmentsHtml
-    //
-    console.log(departments);
-    console.log(employee);
   } catch (err) {
     console.log(err);
   }
@@ -225,8 +222,84 @@ function handleSubmitCreateEmployeeForm (e) {
         headers
       }).then(res => {
         if (res.status == 201) {
-          //đóng form
+          //xóa pending icon
           hidePendingForm()
+          //lấy mã nhân viên mới
+          showPopupEmployeeCreatenew()
+        } else {
+          //hiện lỗi
+          res.json().then(res => {
+            hidePendingForm()
+            showPopupNotify([res.userMsg])
+            $("#popupnotify__btnclose").focus()
+            //đóng popup
+            $("#popupnotify__btnclose").onclick = function () {
+              closePopupNotify()
+            }
+          }
+          )
+        }
+      })
+    }
+  } catch (err) {
+    hidePendingForm()
+    console.log(err);
+  }
+}
+/**
+ * useTo: xử lý khi submit form thêm mới nhân viên
+ * updateBy: tovantai_7/12/2022
+ * author: tovantai
+ * createdAt: 7/12/2022
+ */
+function handleSubmitCreateAndCloseEmployeeForm (e) {
+  try {
+    e.preventDefault()
+    let txtEmployeeName = $("#txtEmployeeName")
+    let txtEmail = $("#txtEmail")
+    let listErr = []
+    let firstErr = ""
+
+    //nếu có lỗi email
+    if (!regularEmail.test(txtEmail.value)) {
+      listErr.unshift("Email không đúng định dạng")
+      txtEmail.focus()
+      firstErr = txtEmail
+    }
+    //nếu có lỗi tên nhân viên
+    if (!txtEmployeeName.value || txtEmployeeName.value.trim().length == 0) {
+      listErr.unshift("Tên không đúng định dạng")
+      txtEmployeeName.focus()
+      firstErr = txtEmployeeName
+    }
+    //hiển thị thông báo nếu có lỗi
+    if (listErr.length != 0) {
+      showPopupNotify(listErr)
+      $("#popupnotify__btnclose").focus()
+      //đóng popup
+      $("#popupnotify__btnclose").onclick = function () {
+        closePopupNotify()
+        firstErr.focus()
+        $("#popupnotify__btnclose").onclick = null
+      }
+    } else {
+      //lấy form
+      let formEmployee = $("#employespage__employeeform form")
+      let formData = Object.fromEntries(new FormData(formEmployee).entries());
+      //gọi api đẩy dữ liệu lên server
+      var headers = new Headers()
+      headers.append("Content-Type", "application/json")
+      showPendingForm()
+      fetch(employesUrl, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers
+      }).then(res => {
+        if (res.status == 201) {
+          //xóa pending icon
+          hidePendingForm()
+          //clear form
+          clearForm()
           closePopupEmployee()
         } else {
           //hiện lỗi
@@ -336,12 +409,6 @@ employeeFormElm.addEventListener("click", function (event) {
     closePopupEmployee()
   }
 })
-//đóng form khi click vào nút cất
-var btnFooterCloseEmployeeForm = $("#employespage__employeeform__footer__btncloseform")
-btnFooterCloseEmployeeForm.addEventListener("click", function (e) {
-  e.preventDefault()
-  closePopupEmployee()
-})
 //đóng form khi click vào nút hủy
 var btnFooterResetEmployeeForm = $("#employespage__employeeform__footer__btnresetform")
 btnFooterResetEmployeeForm.addEventListener("click", function (e) {
@@ -351,7 +418,9 @@ btnFooterResetEmployeeForm.addEventListener("click", function (e) {
 //thêm sự kiện submit form thêm mới nhân viên vào nút cất và thêm
 var btnFooterSubmitCreateEmployeeForm = $("#employespage__employeeform__footer__btncreatenew")
 btnFooterSubmitCreateEmployeeForm.addEventListener('click', handleSubmitCreateEmployeeForm)
-
-//thêm sự kiện submit form cập nhật nhân viên vào nút cất và sửa
+//thêm sự kiện submit form thêm mới nhân viên vào nut cất 
+var btnFooterSubmitCreateAndCloseEmployeeForm = $("#employespage__employeeform__footer__btncloseform")
+btnFooterSubmitCreateAndCloseEmployeeForm.addEventListener('click', handleSubmitCreateAndCloseEmployeeForm)
+//thêm sự kiện submit form cập nhật nhân viên vào nút sửa
 var btnFooterSubmitUpdateEmployeeForm = $("#employespage__employeeform__footer__btnupdate")
 btnFooterSubmitUpdateEmployeeForm.addEventListener('click', handleSubmitUpdateEmployeeForm)

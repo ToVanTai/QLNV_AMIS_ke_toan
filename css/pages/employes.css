@@ -254,6 +254,10 @@
   #employespage__employeeform__footer__btnupdate {
   display: block;
 }
+#employespage__employeeform.showinfo
+  #employespage__employeeform__footer__btncloseform {
+  display: none;
+}
 #employespage__employeeform.createnew
   #employespage__employeeform__footer__btncreatenew {
   display: block;
